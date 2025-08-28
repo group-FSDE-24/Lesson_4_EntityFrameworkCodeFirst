@@ -11,4 +11,10 @@ public class AppUser : BaseEntity
     public Roles Roles { get; set; }
 
 
+
+    // Naviqation Property
+    public AppUserDetail AppUserDetail { get; set; }
+    public List<Order> Orders { get; set; }
+
+
 }
