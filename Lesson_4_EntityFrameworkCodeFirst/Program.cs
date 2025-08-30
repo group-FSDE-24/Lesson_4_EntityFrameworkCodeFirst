@@ -34,6 +34,12 @@ Product Order
 // Data Annotation
 
 
+// Relational Table
+
+1. Convertional 
+2. DataAnnotation
+3. Fluent API 
+
  */
 
 
@@ -62,13 +68,13 @@ class Program
 
 
         var list = context.Products
-            .Where(x => x.Id == 3)
-            .Select(x => new GetProductResponseModel
-            {
-                Name = x.Name,
-                UnitPice = x.UnitPrice
-            })
-            .ToList();
+                                    .Where(x => x.Id == 3)
+                                    .Select(x => new GetProductResponseModel
+                                    {
+                                        Name = x.Name,
+                                        UnitPice = x.UnitPrice
+                                    })
+                                    .ToList();
 
         foreach (var item in list)
         {

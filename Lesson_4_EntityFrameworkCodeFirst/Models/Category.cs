@@ -8,6 +8,6 @@ public class Category : BaseEntity
     public string Description { get; set; }
 
 
-    // Naviqation Property
-    public List<Product> Products { get; set; }
+   //  // Naviqation Property
+   //  public List<Product> Products { get; set; }
 }

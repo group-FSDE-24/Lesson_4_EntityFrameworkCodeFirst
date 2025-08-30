@@ -12,9 +12,9 @@ public class Product : BaseEntity
     public int CategoryId { get; set; }
 
 
-    // Naviqation Property
-    public Category Category { get; set; }
-    public List<Order> Orders { get; set; }
+    //    // Naviqation Property
+    //    public Category Category { get; set; }
+    //    public List<Order> Orders { get; set; }
 
 
 }

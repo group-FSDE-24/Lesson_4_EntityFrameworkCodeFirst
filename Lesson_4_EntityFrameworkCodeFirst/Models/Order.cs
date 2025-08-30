@@ -11,9 +11,9 @@ public class Order : BaseEntity
     public int AppUserId { get; set; }
 
 
-    // Naviqation Property
-    public AppUser AppUser { get; set; }
-    public List<Product> Products { get; set; }
+   // // Naviqation Property
+   // public AppUser AppUser { get; set; }
+   // public List<Product> Products { get; set; }
 
 
 }

@@ -1,7 +1,10 @@
-﻿namespace Lesson_4_EntityFrameworkCodeFirst.Models.Base;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Lesson_4_EntityFrameworkCodeFirst.Models.Base;
 
 public abstract class BaseEntity
 {
+    // [Key]
     public int Id { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime? ModifiedDate { get; set; }

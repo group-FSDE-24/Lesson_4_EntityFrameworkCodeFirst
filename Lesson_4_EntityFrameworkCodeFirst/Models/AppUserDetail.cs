@@ -12,11 +12,12 @@ public class AppUserDetail : BaseEntity
     public string Lastname { get; set; }
 
     // Fk
+    // [ForeignKey("AppUserId")]
     public int AppUserId { get; set; }
 
 
-    // Naviqation Property
-    public AppUser AppUser { get; set; }
+   //  // Naviqation Property
+   //  public AppUser AppUser { get; set; }
 
 
 }

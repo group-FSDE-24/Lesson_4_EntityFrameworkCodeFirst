@@ -9,15 +9,15 @@ public class AppUser : BaseEntity
     public string Username { get; set; }
     public string Password { get; set; }
 
-    [NotMapped]
+    // [NotMapped]
     public string PasswordConfirm { get; set; }
     public Roles Roles { get; set; }
 
 
 
-    // Naviqation Property
-    public AppUserDetail AppUserDetail { get; set; }
-    public List<Order> Orders { get; set; }
+    // // Naviqation Property
+    // public AppUserDetail AppUserDetail { get; set; }
+    // public List<Order> Orders { get; set; }
 
 
 }
