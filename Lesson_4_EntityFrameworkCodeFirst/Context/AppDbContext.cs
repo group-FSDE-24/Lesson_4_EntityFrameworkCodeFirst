@@ -8,7 +8,8 @@ public class AppDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ShopAppDB;Integrated Security=True;Connect Timeout=30;");
+        // optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ShopAppDB;Integrated Security=True;Connect Timeout=30;");
+        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ShopAppConfigurationDB;Integrated Security=True;Connect Timeout=30;");
         base.OnConfiguring(optionsBuilder);
     }
 
@@ -20,7 +21,7 @@ public class AppDbContext : DbContext
         modelBuilder.ApplyConfiguration<Category>(new CategoryConfiguration());
         modelBuilder.ApplyConfiguration<Order>(new OrderConfiguration());
         modelBuilder.ApplyConfiguration<Product>(new ProductConfiguration());
-        
+        modelBuilder.ApplyConfiguration<OrdersProducts>(new OrdersProductsConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -32,4 +33,5 @@ public class AppDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<OrdersProducts> OrdersProducts { get; set; }
 }

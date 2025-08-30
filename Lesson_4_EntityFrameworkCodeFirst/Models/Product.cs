@@ -8,14 +8,13 @@ public class Product : BaseEntity
     public double UnitPrice { get; set; }
     public int UnitInStock { get; set; }
 
-    // FK
-    public int CategoryId { get; set; }
+    public int CategoryId { get; set; }// [ForeignKey("CategoryId")]
+
+
 
 
     //    // Naviqation Property
     //    public Category Category { get; set; }
     //    public List<Order> Orders { get; set; }
-
-
 }
 

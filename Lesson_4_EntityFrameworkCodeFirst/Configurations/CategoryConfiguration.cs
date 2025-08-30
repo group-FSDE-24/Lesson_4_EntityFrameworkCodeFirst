@@ -8,6 +8,12 @@ class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
-        throw new NotImplementedException();
+        builder.Property(x => x.Name)
+             .IsRequired()
+             .HasMaxLength(10)
+             .HasDefaultValue("Default");
+
+
+        // builder.HasQueryFilter(x => x.CreatedDate < new DateTime(2007, 1, 1));
     }
 }

@@ -6,18 +6,14 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Models;
 
 public class AppUserDetail : BaseEntity
 {
-    //[Column("Ad")]
-    public string Firstname { get; set; }
-    //[Column("Ad")]
-    public string Lastname { get; set; }
 
-    // Fk
-    // [ForeignKey("AppUserId")]
-    public int AppUserId { get; set; }
+    public string Firstname { get; set; } //[Column("Ad")
+    public string Lastname { get; set; } //[Column("Ad")]
+    
+    
+    public int AppUserId { get; set; } // [ForeignKey("AppUserId")]
 
 
-   //  // Naviqation Property
-   //  public AppUser AppUser { get; set; }
-
-
+    //  // Naviqation Property
+    //  public AppUser AppUser { get; set; }
 }

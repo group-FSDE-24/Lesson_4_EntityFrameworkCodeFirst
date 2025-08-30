@@ -65,10 +65,18 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Firstname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("No Name")
+                        .HasColumnName("Name");
 
                     b.Property<string>("Lastname")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValue("No Surname")
+                        .HasColumnName("Surname");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -99,7 +107,11 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasDefaultValue("Default");
 
                     b.HasKey("Id");
 
@@ -133,6 +145,21 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.OrdersProducts", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrdersProducts");
+                });
+
             modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -156,8 +183,10 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Migrations
                     b.Property<int>("UnitInStock")
                         .HasColumnType("int");
 
-                    b.Property<double>("UnitPrice")
-                        .HasColumnType("float");
+                    b.Property<decimal>("UnitPrice")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("decimal(18,2)")
+                        .HasDefaultValue(0m);
 
                     b.HasKey("Id");
 
@@ -166,79 +195,46 @@ namespace Lesson_4_EntityFrameworkCodeFirst.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<int>("OrdersId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderProduct");
-                });
-
             modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.AppUserDetail", b =>
                 {
-                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.AppUser", "AppUser")
-                        .WithOne("AppUserDetail")
+                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.AppUser", null)
+                        .WithOne()
                         .HasForeignKey("Lesson_4_EntityFrameworkCodeFirst.Models.AppUserDetail", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.Order", b =>
                 {
-                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.AppUser", "AppUser")
-                        .WithMany("Orders")
+                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.AppUser", null)
+                        .WithMany()
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.Product", b =>
-                {
-                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
+            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.OrdersProducts", b =>
                 {
                     b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.Order", null)
                         .WithMany()
-                        .HasForeignKey("OrdersId")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.Product", null)
                         .WithMany()
-                        .HasForeignKey("ProductsId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.AppUser", b =>
+            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.Product", b =>
                 {
-                    b.Navigation("AppUserDetail");
-
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Lesson_4_EntityFrameworkCodeFirst.Models.Category", b =>
-                {
-                    b.Navigation("Products");
+                    b.HasOne("Lesson_4_EntityFrameworkCodeFirst.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

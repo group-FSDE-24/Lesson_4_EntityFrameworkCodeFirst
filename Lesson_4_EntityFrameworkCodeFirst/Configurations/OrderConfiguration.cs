@@ -8,6 +8,8 @@ class OrderConfiguration : IEntityTypeConfiguration<Order>
 {
     public void Configure(EntityTypeBuilder<Order> builder)
     {
-        throw new NotImplementedException();
+        builder.HasOne<AppUser>()
+            .WithMany()
+            .HasForeignKey(x => x.AppUserId);
     }
 }

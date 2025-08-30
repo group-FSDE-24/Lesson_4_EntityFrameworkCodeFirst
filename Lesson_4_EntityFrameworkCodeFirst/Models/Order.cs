@@ -7,13 +7,10 @@ public class Order : BaseEntity
     public string Address { get; set; }
 
 
-    // Fk
-    public int AppUserId { get; set; }
+    public int AppUserId { get; set; }// [ForeignKey("AppUserId")]
 
 
-   // // Naviqation Property
-   // public AppUser AppUser { get; set; }
-   // public List<Product> Products { get; set; }
-
-
+    // // Naviqation Property
+    // public AppUser AppUser { get; set; }
+    // public List<Product> Products { get; set; }
 }

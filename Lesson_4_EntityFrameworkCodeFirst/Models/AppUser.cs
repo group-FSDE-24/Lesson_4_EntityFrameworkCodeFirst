@@ -8,9 +8,7 @@ public class AppUser : BaseEntity
 {
     public string Username { get; set; }
     public string Password { get; set; }
-
-    // [NotMapped]
-    public string PasswordConfirm { get; set; }
+    public string PasswordConfirm { get; set; }// [NotMapped]
     public Roles Roles { get; set; }
 
 
@@ -18,6 +16,4 @@ public class AppUser : BaseEntity
     // // Naviqation Property
     // public AppUserDetail AppUserDetail { get; set; }
     // public List<Order> Orders { get; set; }
-
-
 }
